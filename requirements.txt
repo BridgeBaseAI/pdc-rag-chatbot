@@ -4,6 +4,7 @@ langchain-core==0.3.0
 langchain-community==0.3.0
 langchain-chroma
 langchain-groq
+langchain-huggingface
 chromadb
 pypdf
 python-dotenv
