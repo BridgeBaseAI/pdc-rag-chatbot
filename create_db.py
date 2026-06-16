@@ -2,7 +2,7 @@ import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_community.embeddings import GPT4AllEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 DATA_PATH = "data_sources"
 CHROMA_PATH = "chroma"
@@ -24,7 +24,7 @@ chunks = text_splitter.split_documents(documents)
 print(f"Created {len(chunks)} chunks")
 
 print("Creating embeddings...")
-embeddings = GPT4AllEmbeddings(model_name="all-MiniLM-L6-v2.gguf2.f16.gguf")
+embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 print("Saving to vector database...")
 db = Chroma.from_documents(chunks, embeddings, persist_directory=CHROMA_PATH)

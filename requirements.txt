@@ -7,4 +7,4 @@ langchain-groq
 chromadb
 pypdf
 python-dotenv
-gpt4all
+sentence-transformers
