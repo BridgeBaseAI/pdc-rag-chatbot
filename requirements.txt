@@ -1,9 +1,10 @@
 streamlit
-langchain
-langchain-community
+langchain==0.3.0
+langchain-core==0.3.0
+langchain-community==0.3.0
 langchain-chroma
+langchain-groq
 chromadb
-google-generativeai
-sentence-transformers
+pypdf
 python-dotenv
 gpt4all
