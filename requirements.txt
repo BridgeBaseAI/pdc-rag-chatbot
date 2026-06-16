@@ -1,0 +1,9 @@
+streamlit
+langchain
+langchain-community
+langchain-chroma
+chromadb
+google-generativeai
+sentence-transformers
+python-dotenv
+gpt4all
