@@ -8,6 +8,7 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.prompts import ChatPromptTemplate
 from persona_config import MODI_PROMPT, TRUMP_PROMPT
+
 load_dotenv()
 CHROMA_PATH = "chroma"
 
@@ -22,7 +23,7 @@ else:
 
 @st.cache_resource
 def setup_rag():
-   embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embeddings)
     retriever = db.as_retriever(search_type="similarity", k=5)
     llm = ChatGroq(
@@ -30,11 +31,12 @@ def setup_rag():
         api_key=os.environ["GROQ_API_KEY"]
     )
     return retriever, llm
+
 try:
     retriever, llm = setup_rag()
 except Exception as e:
     st.error(f"Error: {e}")
-    st.info("Run python create_db.py first and add GEMINI_API_KEY to .env")
+    st.info("Run python create_db.py first and add GROQ_API_KEY to .env")
     st.stop()
 
 def answer_with_persona(query_text):
@@ -76,4 +78,4 @@ if query:
 
 with st.sidebar:
     st.header("About")
-    st.info("RAG chatbot using LangChain + ChromaDB + Gemini 2.0")
+    st.info("RAG chatbot using LangChain + ChromaDB + Groq")
